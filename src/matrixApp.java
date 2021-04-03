@@ -3,6 +3,12 @@ import java.util.Scanner;
 
 public class matrixApp {
 
+    private static int generateRandomNumber(int limit) {
+        Random random = new Random();
+        int number = random.nextInt(limit);
+        return number;
+    }
+
     private static int[][] createMatrix() {
         Scanner userInput = new Scanner(System.in);
         int rows;
@@ -13,18 +19,17 @@ public class matrixApp {
         int isRandom = userInput.nextInt();
 
         if (isRandom == 1) {
-            Random random = new Random();
             int limit = 10;
             do {
-                rows = random.nextInt(limit) + 1;
+                rows = generateRandomNumber(limit) + 1;
                 if (rows == 1){
                     rows += 1;
                 }
-                columns = random.nextInt(limit) + 1;
+                columns = generateRandomNumber(limit) + 1;
             } while (columns < rows);
             
         } else {
-            System.out.println("Enter a number of lines: ");
+            System.out.println("Enter a number of rows: ");
             rows = userInput.nextInt();
             System.out.println("Enter a number of columns: ");
             columns = userInput.nextInt();
@@ -38,11 +43,10 @@ public class matrixApp {
     }
 
     private static int[][] populateMatrix(int[][] matrix) {
-        Random random = new Random();
         int limit = 2;
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                matrix[i][j] = random.nextInt(limit);
+                matrix[i][j] = generateRandomNumber(limit);
             }
         }
         return matrix;
